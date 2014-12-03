@@ -83,6 +83,10 @@ if executable('ag')
 endif
 
 " Color scheme
+let g:solarized_termcolors=256
+set background=light
+set background=dark
+set background=light
 colorscheme github
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
@@ -156,6 +160,333 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 " Always use vertical diffs
 set diffopt+=vertical
+
+" EMyth Specific
+
+" Toggle the currently selected window to full screen and back
+nnoremap <C-W>O :call MaximizeToggle()<CR>
+nnoremap <C-W>o :call MaximizeToggle()<CR>
+nnoremap <C-W><C-O> :call MaximizeToggle()<CR>
+
+function! MaximizeToggle()
+  if exists("s:maximize_session")
+    exec "source " . s:maximize_session
+    call delete(s:maximize_session)
+    unlet s:maximize_session
+    let &hidden=s:maximize_hidden_save
+    unlet s:maximize_hidden_save
+  else
+    let s:maximize_hidden_save = &hidden
+    let s:maximize_session = tempname()
+    set hidden
+    exec "mksession! " . s:maximize_session
+    only
+  endif
+endfunction
+
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Nerd Tree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>nn :NERDTreeToggle<cr>
+map <leader>nb :NERDTreeFromBookmark
+map <leader>nf :NERDTreeFind<cr>
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => TSlime Rspec to Tmux 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+" command -nargs=? -complete=shellcmd W  :w | :call call Send_to_Tmux("load '".@%."';")
+command -nargs=? -complete=shellcmd W  :w | :call Send_to_Tmux("load '".@%."';\n")
+command -nargs=? -complete=shellcmd CR  :call Send_to_Tmux(".clear\n")
+
+
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Teaspoon settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" map <Leader>j :w<CR> :call Send_to_Tmux("rake teaspoon\n")<CR>
+command -nargs=? -complete=shellcmd TS  :call Send_to_Tmux("rake teaspoon\n")
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Screen settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:ScreenImpl = 'Tmux'
+" let g:ScreenShellTmuxInitArgs = '-2'
+" let g:ScreenShellInitialFocus = 'shell'
+" let g:ScreenShellQuitOnVimExit = 0
+" map <F5> :ScreenShellVertical<CR>
+" map <F6> :ScreenShell<CR>
+" command -nargs=? -complete=shellcmd W  :w | :call ScreenShellSend("load '".@%."';")
+" map <Leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' . line('.'))<CR>
+" map <Leader>e :w<CR> :call ScreenShellSend("cucumber --format=pretty ".@% . ':' . line('.'))<CR>
+" map <Leader>b :w<CR> :call ScreenShellSend("break ".@% . ':' . line('.'))<CR>
+" 
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => CoffeeLint settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let coffee_linter = '/usr/local/bin/coffeelint'
+" let coffee_lint_options = '-f /home/lmiller/Documents/my_dotfiles/coffeelint.json'
+" Folding
+autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
+" Two-space indentation
+autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+
+
+" let g:syntastic_coffee_coffeelint_args="--file /home/lmiller/Documents/my_dotfiles/coffeelint.json"
+" let g:syntastic_coffee_coffeelint_args="--file /Users/lmiller/Documents/my_dotfiles/coffeelint.json"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Crosshairs
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" hi CursorLine   cterm=NONE ctermbg=235
+" hi CursorColumn cterm=NONE ctermbg=235
+hi CursorLine   cterm=NONE
+hi CursorColumn cterm=NONE
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Fast saving
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>w :w!<cr>
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""
+" => bufExplorer plugin
+""""""""""""""""""""""""""""""
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerShowRelativePath=1
+let g:bufExplorerFindActive=1
+let g:bufExplorerSortBy='name'
+map <leader>o :BufExplorer<cr>
+
+""""""""""""""""""""""""""""""
+" => MRU plugin
+""""""""""""""""""""""""""""""
+let MRU_Max_Entries = 400
+map <leader>f :MRU<CR>
+
+""""""""""""""""""""""""""""""
+" => CTRL-P
+""""""""""""""""""""""""""""""
+let g:ctrlp_working_path_mode = 0
+
+let g:ctrlp_map = '<c-f>'
+map <c-b> :CtrlPBuffer<cr>
+
+let g:ctrlp_max_height = 20
+let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
+" Remember info about open buffers on close
+set viminfo^=%
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => tab mappings 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" map <a-1> 1gt
+" map <C-2> 2gt
+" map <C-3> 3gt
+" map <C-4> 4gt
+" map <C-5> 5gt
+" map <C-6> 6gt
+" map <C-7> 7gt
+" map <C-8> 8gt
+" map <C-9> 9gt
+map <C-t> :tabnew<CR>
+map <C-w> :tabclose<CR>
+" 
+
+function MyTabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    " select the highlighting
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+
+    " set the tab page number (for mouse clicks)
+    let s .= '%' . (i + 1) . 'T'
+
+    " the label is made by MyTabLabel()
+    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+  endfor
+
+  " after the last tab fill with TabLineFill and reset tab page nr
+  let s .= '%#TabLineFill#%T'
+
+  " right-align the label to close the current tab page
+  if tabpagenr('$') > 1
+    let s .= '%=%#TabLine#%999Xclose'
+  endif
+
+  return s
+endfunction
+
+function MyTabLabel(n)
+  let buflist = tabpagebuflist(a:n)
+  let winnr   = tabpagewinnr(a:n)
+  let bufnam  = bufname(buflist[winnr - 1])
+  " This is getting the basename() of bufname above
+  let base    = substitute(bufnam, '.*/', '', '')
+  let name    = a:n . ' ' . base
+  return name
+endfunction
+
+
+set tabline=%!MyTabLine()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Copy and paste 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" On OSX
+" vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
+" nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
+" On ubuntu (running Vim in gnome-terminal)
+" The reason for the double-command on <C-c> is due to some weirdness with the X clipboard system.
+vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
+nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
+"
+" set hlsearch
+" These are the tweaks I apply to YCM's config, you don't need them but they might help.
+" " YCM gives you popups and splits by default that some people might not like, so these should tidy it up a bit for you.
+let g:ycm_add_preview_to_completeopt=0
+let g:ycm_confirm_extra_conf=0
+set completeopt-=preview
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => AG integration 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => gem ctags 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+execute pathogen#infect()
+autocmd FileType ruby let &l:tags = pathogen#legacyjoin(pathogen#uniq(
+      \ pathogen#split(&tags) +
+      \ map(split($GEM_PATH,':'),'v:val."/gems/*/tags"')))
+
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => javascript
+" http://oli.me.uk/2013/06/29/equipping-vim-for-javascript/
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" breaks lines after a bracket has been inserted.
+imap <C-c> <CR><Esc>O
+
+let g:surround_{char2nr('=')} = "<%= \r %>"
+let g:surround_{char2nr('-')} = "<% \r %>"
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TODO: RRS-LMiller we need to make this into it's own plugin
+" => force.com - settings
+" //github.com/neowit/vim-force.com
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" breaks lines after a bracket has been inserted.
+let g:apex_backup_folder = "/Users/lennymiller/code/emyth/apex/backup"
+let g:apex_temp_folder = "/Users/lennymiller/code/emyth/apex/temp"
+let g:apex_properties_folder = "/Users/lennymiller/code/emyth/apex/properties"
+let g:apex_tooling_force_dot_com_path = "/Users/lennymiller/code/emyth/apex/lib/tooling-force.com-0.1.4.3.jar"
+
+function! s:getVisualSelection()
+  " Why is this not a built-in Vim script
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][col1 - 1:]
+  return join(lines, "\n")
+endfunction
+
+"
+" a:0 - number of arguments
+" a:1 - query
+" a:3 - SOQL
+" a:4 - --format:csv
+"
+" s:apex('query','visual',true)
+" s:apex('query','visual',true, '--format:csv')
+function! s:ForceCLI(...)
+  let parameterCount = a:0
+  let apexQuery = a:1
+  let apexMode  = a:2
+  let apexSOQL = a:2
+  let inVim = a:3
+  let apexQuerySwitch = ' '
+
+  if (parameterCount ==? '4')
+    let apexQuerySwitch = a:4
+  endif
+
+  if (apexMode ==? 'visual')
+    let apexSOQL = s:getVisualSelection()
+  endif
+
+  let apexCommand = "force ".apexQuery." \"".apexSOQL."\" ".apexQuerySwitch
+
+  if inVim ==? 'true'
+    let l:output = system(apexCommand)
+
+    cexpr l:output
+    caddexpr ""
+    cwindow
+  else
+    call Send_to_Tmux(apexCommand." > apex_results\n;cat apex_results\n")
+  endif
+endfunction
+
+function! s:ForceApex(...)
+  let parameterCount = a:0
+  let apexQuery = a:1
+  let apexMode  = a:2
+  let apexSOQL = a:2
+  let inVim = a:3
+  let apexQuerySwitch = ''
+
+  if (parameterCount ==? '4')
+    let apexQuerySwitch = a:4
+  endif
+
+  if (apexMode ==? 'visual')
+    let apexSOQL = s:getVisualSelection()
+  endif
+
+  let apexCommand = "force ".apexQuery."\n".apexSOQL."\n".apexQuerySwitch
+
+  call Send_to_Tmux(apexCommand)
+endfunction
+
+command -nargs=? -complete=shellcmd DeployApex  :call Send_to_Tmux("ant deploy_".split(expand('%:h'),'/')[0]."\n")
+command -nargs=? -complete=shellcmd RetrieveApex  :call Send_to_Tmux("ant retrieve_".split(expand('%:h'),'/')[0]."\n")
+
+command -nargs=? -complete=shellcmd ForceQuery :call  s:ForceCLI("query","visual","false")
+command -nargs=? -complete=shellcmd ForceQueryToCsv :call  s:ForceCLI("query","visual","false","--format:csv")
+command -nargs=? -complete=shellcmd ForceQueryInVim :call  s:ForceCLI("query","visual","true")
+command -nargs=? -complete=shellcmd ForceQueryInVimToCsv :call  s:ForceCLI("query","visual","true","--format:csv")
+
+command -nargs=? -complete=shellcmd ForceApex :call  s:ForceApex("apex","visual","false")
+
+map <leader>dd :DeployApex<cr>
+map <leader>rr :RetrieveApex<cr>
+vmap <leader>11 :<BS><BS><BS><BS><BS>ForceQuery<cr><cr>
+vmap <leader>22 :<BS><BS><BS><BS><BS>ForceQueryToCsv<cr><cr>
+vmap <leader>33 :<BS><BS><BS><BS><BS>ForceQueryInVim<cr><cr>
+vmap <leader>44 :<BS><BS><BS><BS><BS>ForceQueryInVimToCsv<cr><cr>
+
+vmap <leader>55 :<BS><BS><BS><BS><BS>ForceApex<cr><cr>
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

@@ -30,6 +30,24 @@ Plugin 'vim-scripts/ctags.vim'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'vim-scripts/tComment'
 
+" EMyth-Specific
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/nerdtree'
+Bundle 'jgdavey/tslime.vim'
+Bundle 'elzr/vim-json'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'corntrace/bufexplorer'
+Bundle 'slim-template/vim-slim'
+Bundle 'groenewege/vim-less'
+Bundle 'vim-scripts/loremipsum'
+Bundle 'Lokaltog/vim-distinguished'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'pangloss/vim-javascript'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'Raimondi/delimitMate'
+Bundle 'neowit/vim-force.com'
+
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
 endif
