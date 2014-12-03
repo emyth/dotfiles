@@ -87,7 +87,7 @@ let g:solarized_termcolors=256
 set background=light
 set background=dark
 set background=light
-colorscheme github
+colorscheme solarized
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
