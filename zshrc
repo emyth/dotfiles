@@ -96,5 +96,46 @@ _load_settings() {
 }
 _load_settings "$HOME/.zsh/configs"
 
+# EMyth Specific Items
+
+# aliases
+[[ -f ~/.aliases ]] && source ~/.aliases
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_72.jdk/Contents/Home
+
+# PATH=/usr/local/bin:$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+GOPATH=$GOPATH:$HOME/gocode
+export GOPATH=$HOME/gocode
+PATH=/usr/local/bin:$PATH
+PATH=$PATH:$GOPATH/bin:$HOME/bin
+CLASSPATH=$CLASSPATH:$HOME/jars
+
+
+########## For my Python Environment
+# Set architecture flags
+export ARCHFLAGS="-arch x86_64"
+# Ensure user-installed binaries take precedence
+export PATH=/usr/local/bin:$PATH
+# Load .bashrc if it exists
+test -f ~/.bashrc && source ~/.bashrc
+
+# pip should only run if there is a virtualenv currently activated
+# export PIP_REQUIRE_VIRTUALENV=true
+# cache pip-installed packages to avoid re-downloading
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+
+
+gpip(){
+   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+
+PATH=/usr/local/sbin:$PATH
+
+export PATH="$HOME/.bin:$PATH"
+
+export PATH="$PATH:/usr/local/lib/node_modules"
+source $(brew --prefix nvm)/nvm.sh
+
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

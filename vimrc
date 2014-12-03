@@ -1,3 +1,28 @@
+" TODO: Change Lorem Ipsum to http://metaphorpsum.com/
+" TABLE OF CONTENTS:
+" ALIASES:  ~/.aliases
+"           ~/.aliases.local
+" TMUX:     ~/.tmux.conf
+"           ~/.tmux.conf.local
+" ZSH:      ~/.zshrc
+"           ~/.zshrc.local
+"           ~/.zlogin
+" IRB:      ~/.irbrc
+"           ~/.irbrc.local
+" GIT:      ~/.gitconfig
+"           ~/.gitconfig.local
+" VIM:      ~/.vimrc
+"           ~/.vimrc.local
+"           ~/.gvimrc
+"           ~/.gvimrc.local
+"           ~/.minimal-vimrc
+" VUNDLE:   ~/.vimrc.bundles
+"           ~/.vimrc.bundles.local
+" COFFEE:   ~/.coffeelint.json
+" NOTES:
+"      JSON: :%!python -m json.tool
+"      OLD: ~/.vim_runtime
+
 " Use Vim settings, rather then Vi settings. This setting must be as early as
 " possible, as it has side effects.
 set nocompatible
