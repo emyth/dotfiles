@@ -29,3 +29,6 @@
   prune = true
 [include]
   path = ~/.gitconfig.local
+[user]
+	name = Lenny Miller
+	email = lmiller@emyth.com

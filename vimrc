@@ -321,18 +321,24 @@ set viminfo^=%
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => tab mappings 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" map <a-1> 1gt
-" map <C-2> 2gt
-" map <C-3> 3gt
-" map <C-4> 4gt
-" map <C-5> 5gt
-" map <C-6> 6gt
-" map <C-7> 7gt
-" map <C-8> 8gt
-" map <C-9> 9gt
 map <C-t> :tabnew<CR>
 map <C-w> :tabclose<CR>
-" 
+map <leader>1 1gt
+map <leader>2 1gt
+map <leader>3 1gt
+map <leader>4 1gt
+map <leader>5 1gt
+map <leader>6 1gt
+map <leader>7 1gt
+map <leader>8 1gt
+map <leader>9 1gt
+map <leader>0 1gt
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim window mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" map <leader>- :split<CR>
+" map <leader>| :vsplit<CR>
 
 function MyTabLine()
   let s = ''
