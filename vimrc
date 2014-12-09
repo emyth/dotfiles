@@ -324,15 +324,15 @@ set viminfo^=%
 map <C-t> :tabnew<CR>
 map <C-w> :tabclose<CR>
 map <leader>1 1gt
-map <leader>2 1gt
-map <leader>3 1gt
-map <leader>4 1gt
-map <leader>5 1gt
-map <leader>6 1gt
-map <leader>7 1gt
-map <leader>8 1gt
-map <leader>9 1gt
-map <leader>0 1gt
+map <leader>2 2gt
+map <leader>3 3gt
+map <leader>4 4gt
+map <leader>5 5gt
+map <leader>6 6gt
+map <leader>7 7gt
+map <leader>8 8gt
+map <leader>9 9gt
+map <leader>0 10gt
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim window mappings
