@@ -109,7 +109,8 @@ GOPATH=$GOPATH:$HOME/gocode
 export GOPATH=$HOME/gocode
 PATH=/usr/local/bin:$PATH
 PATH=$PATH:$GOPATH/bin:$HOME/bin
-CLASSPATH=$CLASSPATH:$HOME/jars
+export CLASSPATH=$CLASSPATH:$HOME/jars
+export CLASS_PATH=$CLASSPATH:$HOME/jars
 
 
 ########## For my Python Environment
@@ -121,7 +122,7 @@ export PATH=/usr/local/bin:$PATH
 test -f ~/.bashrc && source ~/.bashrc
 
 # pip should only run if there is a virtualenv currently activated
-# export PIP_REQUIRE_VIRTUALENV=true
+export PIP_REQUIRE_VIRTUALENV=true
 # cache pip-installed packages to avoid re-downloading
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 

@@ -27,7 +27,7 @@
 " possible, as it has side effects.
 set nocompatible
 
-" Leader
+" leader
 let mapleader = " "
 
 set backspace=2   " Backspace deletes like most programs in insert mode
@@ -111,7 +111,6 @@ endif
 let g:solarized_termcolors=256
 set background=light
 set background=dark
-set background=light
 colorscheme solarized
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
@@ -143,7 +142,7 @@ inoremap <S-Tab> <c-n>
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 
 " Index ctags from any project, including those outside Rails
-map <Leader>ct :!ctags -R .<CR>
+map <leader>ct :!ctags -R .<CR>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
@@ -155,12 +154,12 @@ nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
 " vim-rspec mappings
-nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>s :call RunNearestSpec()<CR>
-nnoremap <Leader>l :call RunLastSpec()<CR>
+nnoremap <leader>t :call RunCurrentSpecFile()<CR>
+nnoremap <leader>s :call RunNearestSpec()<CR>
+nnoremap <leader>l :call RunLastSpec()<CR>
 
 " Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<space>
+" nnoremap <leader>r :RunInInteractiveShell<space>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -231,7 +230,7 @@ command -nargs=? -complete=shellcmd CR  :call Send_to_Tmux(".clear\n")
 " => Teaspoon settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" map <Leader>j :w<CR> :call Send_to_Tmux("rake teaspoon\n")<CR>
+" map <leader>j :w<CR> :call Send_to_Tmux("rake teaspoon\n")<CR>
 command -nargs=? -complete=shellcmd TS  :call Send_to_Tmux("rake teaspoon\n")
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Screen settings
@@ -243,9 +242,9 @@ command -nargs=? -complete=shellcmd TS  :call Send_to_Tmux("rake teaspoon\n")
 " map <F5> :ScreenShellVertical<CR>
 " map <F6> :ScreenShell<CR>
 " command -nargs=? -complete=shellcmd W  :w | :call ScreenShellSend("load '".@%."';")
-" map <Leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' . line('.'))<CR>
-" map <Leader>e :w<CR> :call ScreenShellSend("cucumber --format=pretty ".@% . ':' . line('.'))<CR>
-" map <Leader>b :w<CR> :call ScreenShellSend("break ".@% . ':' . line('.'))<CR>
+" map <leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' . line('.'))<CR>
+" map <leader>e :w<CR> :call ScreenShellSend("cucumber --format=pretty ".@% . ':' . line('.'))<CR>
+" map <leader>b :w<CR> :call ScreenShellSend("break ".@% . ':' . line('.'))<CR>
 " 
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -270,7 +269,7 @@ autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 " hi CursorColumn cterm=NONE ctermbg=235
 hi CursorLine   cterm=NONE
 hi CursorColumn cterm=NONE
-nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+nnoremap <leader>c :set cursorline! cursorcolumn!<CR>
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast saving

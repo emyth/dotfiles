@@ -40,12 +40,13 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'corntrace/bufexplorer'
 Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/loremipsum'
-Bundle 'Lokaltog/vim-distinguished'
+" Bundle 'Lokaltog/vim-distinguished'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'Raimondi/delimitMate'
 Bundle 'neowit/vim-force.com'
+Bundle 'emyth/cohesion.vim'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
