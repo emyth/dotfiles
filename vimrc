@@ -523,6 +523,8 @@ vmap <leader>44 :<BS><BS><BS><BS><BS>ForceQueryInVimToCsv<cr><cr>
 
 vmap <leader>55 :<BS><BS><BS><BS><BS>ForceApex<cr><cr>
 
+map <leader>h :h emyth<CR>
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
