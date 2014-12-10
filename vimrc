@@ -431,10 +431,10 @@ let g:surround_{char2nr('-')} = "<% \r %>"
 " //github.com/neowit/vim-force.com
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " breaks lines after a bracket has been inserted.
-let g:apex_backup_folder = "/Users/lennymiller/code/emyth/apex/backup"
-let g:apex_temp_folder = "/Users/lennymiller/code/emyth/apex/temp"
-let g:apex_properties_folder = "/Users/lennymiller/code/emyth/apex/properties"
-let g:apex_tooling_force_dot_com_path = "/Users/lennymiller/code/emyth/apex/lib/tooling-force.com-0.1.4.3.jar"
+let g:apex_backup_folder = "/Users/natebiondi/code/emyth/apex/backup"
+let g:apex_temp_folder = "/Users/natebiondi/code/emyth/apex/temp"
+let g:apex_properties_folder = "/Users/natebiondi/code/emyth/apex/properties"
+let g:apex_tooling_force_dot_com_path = "/Users/natebiondi/code/emyth/apex/lib/tooling-force.com-0.1.4.3.jar"
 
 function! s:getVisualSelection()
   " Why is this not a built-in Vim script
@@ -524,6 +524,7 @@ vmap <leader>44 :<BS><BS><BS><BS><BS>ForceQueryInVimToCsv<cr><cr>
 vmap <leader>55 :<BS><BS><BS><BS><BS>ForceApex<cr><cr>
 
 map <leader>h :h emyth<CR>
+map <leader>H :bd<CR>
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
