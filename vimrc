@@ -388,8 +388,8 @@ set tabline=%!MyTabLine()
 " nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
 " On ubuntu (running Vim in gnome-terminal)
 " The reason for the double-command on <C-c> is due to some weirdness with the X clipboard system.
-vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
-nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
+  " vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
+  " nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 "
 " set hlsearch
 " These are the tweaks I apply to YCM's config, you don't need them but they might help.
