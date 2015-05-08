@@ -112,6 +112,7 @@ let g:solarized_termcolors=256
 set background=light
 set background=dark
 colorscheme solarized
+" colorscheme github
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
@@ -213,13 +214,17 @@ endfunction
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>nn :NERDTreeToggle<cr>
-map <leader>nb :NERDTreeFromBookmark
+map <leader>nb :NERDTreeFromBookmark<space>
 map <leader>nf :NERDTreeFind<cr>
+let NERDTreeDirArrows = 0
+
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => TSlime Rspec to Tmux 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+" let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("bin/rspec {spec}\n")'
+" let g:rspec_command = 'call Send_to_Tmux("zeus test {spec}\n")'
 " command -nargs=? -complete=shellcmd W  :w | :call call Send_to_Tmux("load '".@%."';")
 command -nargs=? -complete=shellcmd W  :w | :call Send_to_Tmux("load '".@%."';\n")
 command -nargs=? -complete=shellcmd CR  :call Send_to_Tmux(".clear\n")
@@ -378,14 +383,15 @@ function MyTabLabel(n)
   return name
 endfunction
 
-
 set tabline=%!MyTabLine()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Copy and paste 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " On OSX
-" vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
-" nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
+vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
+nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
+
+set clipboard=unnamed
 " On ubuntu (running Vim in gnome-terminal)
 " The reason for the double-command on <C-c> is due to some weirdness with the X clipboard system.
   " vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
@@ -431,10 +437,10 @@ let g:surround_{char2nr('-')} = "<% \r %>"
 " //github.com/neowit/vim-force.com
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " breaks lines after a bracket has been inserted.
-let g:apex_backup_folder = "/Users/natebiondi/code/emyth/apex/backup"
-let g:apex_temp_folder = "/Users/natebiondi/code/emyth/apex/temp"
-let g:apex_properties_folder = "/Users/natebiondi/code/emyth/apex/properties"
-let g:apex_tooling_force_dot_com_path = "/Users/natebiondi/code/emyth/apex/lib/tooling-force.com-0.1.4.3.jar"
+let g:apex_backup_folder = "/Users/lennymiller/code/emyth/apex/backup"
+let g:apex_temp_folder = "/Users/lennymiller/code/emyth/apex/temp"
+let g:apex_properties_folder = "/Users/lennymiller/code/emyth/apex/properties"
+let g:apex_tooling_force_dot_com_path = "/Users/lennymiller/code/emyth/apex/lib/tooling-force.com-0.1.4.3.jar"
 
 function! s:getVisualSelection()
   " Why is this not a built-in Vim script
@@ -525,6 +531,7 @@ vmap <leader>55 :<BS><BS><BS><BS><BS>ForceApex<cr><cr>
 
 map <leader>h :h emyth<CR>
 map <leader>H :bd<CR>
+
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
